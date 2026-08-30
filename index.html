@@ -1,0 +1,1546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f7f5ff">
+<title>Anupam Shraddha | Portfolio</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --bg:#f7f5ff;
+    --surface:#ffffff;
+    --surface-soft:#f0edff;
+    --ink:#1f1d2b;
+    --muted:#716d81;
+    --purple:#7257f5;
+    --purple2:#aa94ff;
+    --line:#e7e1f4;
+    --dark:#211b37;
+    --shadow:0 18px 60px rgba(54,35,108,.12);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+body{
+    font-family:"DM Sans",sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.6;
+    overflow-x:hidden;
+}
+
+img{display:block;max-width:100%}
+a{-webkit-tap-highlight-color:transparent}
+
+.cursor-glow{
+    position:fixed;
+    width:280px;
+    height:280px;
+    border-radius:50%;
+    background:radial-gradient(circle,rgba(145,112,255,.15),transparent 68%);
+    pointer-events:none;
+    transform:translate(-50%,-50%);
+    z-index:-1;
+    transition:width .25s,height .25s;
+}
+
+body:before,
+body:after{
+    content:"";
+    position:fixed;
+    border-radius:50%;
+    filter:blur(40px);
+    z-index:-2;
+    opacity:.32;
+}
+
+body:before{
+    width:360px;
+    height:360px;
+    background:#c9baff;
+    top:-160px;
+    left:-120px;
+}
+
+body:after{
+    width:420px;
+    height:420px;
+    background:#ffd4e9;
+    right:-180px;
+    bottom:-150px;
+}
+
+.container{
+    width:min(1140px,92%);
+    margin:auto;
+}
+
+/* NAVBAR */
+
+nav{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:rgba(247,245,255,.75);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid rgba(255,255,255,.6);
+}
+
+.nav-wrap{
+    height:72px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    font-family:"Playfair Display",serif;
+    font-size:1.4rem;
+    font-weight:800;
+    color:var(--ink);
+}
+
+.logo span{color:var(--purple)}
+
+.links{
+    display:flex;
+    gap:24px;
+    align-items:center;
+}
+
+.links a{
+    text-decoration:none;
+    color:var(--muted);
+    font-weight:700;
+    font-size:.9rem;
+    position:relative;
+}
+
+.links a:after{
+    content:"";
+    position:absolute;
+    width:0;
+    height:2px;
+    background:var(--purple);
+    left:0;
+    bottom:-7px;
+    transition:.25s;
+}
+
+.links a:hover:after,
+.links a.active:after{width:100%}
+
+.links a.active{color:var(--purple)}
+
+.nav-actions{
+    display:flex;
+    gap:8px;
+}
+
+.theme-btn,
+.menu-btn{
+    border:1px solid var(--line);
+    background:var(--surface);
+    color:var(--ink);
+    width:40px;
+    height:40px;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:1rem;
+}
+
+.menu-btn{display:none}
+
+/* HERO */
+
+.hero{
+    min-height:calc(100vh - 72px);
+    padding:70px 0;
+    display:grid;
+    grid-template-columns:1.15fr .85fr;
+    gap:65px;
+    align-items:center;
+    position:relative;
+}
+
+.eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:#ece8ff;
+    color:var(--purple);
+    padding:8px 14px;
+    border-radius:100px;
+    font-weight:800;
+    font-size:.82rem;
+}
+
+.pulse{
+    width:8px;
+    height:8px;
+    background:#5bdb94;
+    border-radius:50%;
+    box-shadow:0 0 0 5px rgba(91,219,148,.14);
+    animation:pulse 1.8s infinite;
+}
+
+@keyframes pulse{
+    50%{box-shadow:0 0 0 10px rgba(91,219,148,0)}
+}
+
+h1{
+    font-family:"Playfair Display",serif;
+    font-size:clamp(3.3rem,7vw,6.4rem);
+    line-height:.95;
+    letter-spacing:-.05em;
+    margin:22px 0;
+}
+
+h1 span{color:var(--purple)}
+
+.hero p{
+    font-size:1.08rem;
+    color:var(--muted);
+    max-width:640px;
+}
+
+.actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-top:28px;
+}
+
+.btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:14px 20px;
+    border-radius:13px;
+    font-weight:800;
+    text-decoration:none;
+    transition:.25s;
+    cursor:pointer;
+    border:0;
+}
+
+.primary{
+    background:var(--purple);
+    color:#fff;
+    box-shadow:0 13px 30px rgba(114,87,245,.25);
+}
+
+.primary:hover{
+    transform:translateY(-4px);
+    box-shadow:0 18px 36px rgba(114,87,245,.3);
+}
+
+.secondary{
+    background:var(--surface);
+    color:var(--ink);
+    border:1px solid var(--line);
+}
+
+.secondary:hover{
+    color:var(--purple);
+    border-color:var(--purple);
+}
+
+/* PERSONAL PHOTO HERO */
+
+.photo-showcase{
+    position:relative;
+    min-height:530px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.photo-glow{
+    position:absolute;
+    width:400px;
+    height:400px;
+    border-radius:50%;
+    background:linear-gradient(135deg,rgba(114,87,245,.45),rgba(255,179,218,.35));
+    filter:blur(20px);
+    animation:floatGlow 5s ease-in-out infinite;
+}
+
+@keyframes floatGlow{
+    50%{transform:scale(1.08) translateY(-12px)}
+}
+
+.photo-frame{
+    position:relative;
+    z-index:2;
+    width:min(390px,86%);
+    height:470px;
+    border-radius:36px;
+    overflow:hidden;
+    border:8px solid rgba(255,255,255,.82);
+    background:linear-gradient(145deg,#8064fa,#342661);
+    box-shadow:0 28px 70px rgba(52,38,97,.28);
+    transition:transform .2s ease;
+}
+
+.photo-frame img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+}
+
+/* If no photo has been added yet */
+.photo-placeholder{
+    width:100%;
+    height:100%;
+    display:grid;
+    place-items:center;
+    color:white;
+    text-align:center;
+    padding:30px;
+    font-size:1.05rem;
+}
+
+.photo-placeholder i{
+    font-size:4rem;
+    display:block;
+    margin-bottom:15px;
+}
+
+.photo-badge{
+    position:absolute;
+    z-index:4;
+    background:rgba(255,255,255,.93);
+    color:var(--ink);
+    border-radius:18px;
+    padding:14px 18px;
+    box-shadow:var(--shadow);
+    backdrop-filter:blur(12px);
+    animation:floatBadge 4s ease-in-out infinite;
+}
+
+.photo-badge.one{
+    left:0;
+    top:75px;
+}
+
+.photo-badge.two{
+    right:-10px;
+    bottom:70px;
+    animation-delay:-2s;
+}
+
+.photo-badge strong{
+    display:block;
+    font-size:.95rem;
+}
+
+.photo-badge span{
+    color:var(--muted);
+    font-size:.78rem;
+}
+
+.photo-badge i{
+    color:var(--purple);
+    margin-right:5px;
+}
+
+@keyframes floatBadge{
+    50%{transform:translateY(-10px)}
+}
+
+.hero-socials{
+    display:flex;
+    gap:10px;
+    margin-top:26px;
+}
+
+.hero-socials a{
+    width:42px;
+    height:42px;
+    border-radius:12px;
+    display:grid;
+    place-items:center;
+    background:var(--surface);
+    color:var(--ink);
+    border:1px solid var(--line);
+    text-decoration:none;
+    transition:.25s;
+}
+
+.hero-socials a:hover{
+    background:var(--purple);
+    color:white;
+    transform:translateY(-4px);
+}
+
+.scroll{
+    position:absolute;
+    bottom:22px;
+    left:50%;
+    transform:translateX(-50%);
+    color:var(--muted);
+    font-size:.78rem;
+    font-weight:800;
+    letter-spacing:.08em;
+    animation:bounce 2s infinite;
+}
+
+@keyframes bounce{
+    50%{transform:translate(-50%,7px)}
+}
+
+/* GENERAL */
+
+section{padding:90px 0}
+
+.tag{
+    color:var(--purple);
+    font-size:.75rem;
+    font-weight:800;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+}
+
+.section-head{margin-bottom:32px}
+
+.section-head h2{
+.projects-subtitle{color:var(--muted);margin-top:10px;font-size:1rem;max-width:680px}
+    font-family:"Playfair Display",serif;
+    font-size:clamp(2rem,4vw,3.2rem);
+    line-height:1.1;
+    margin-top:7px;
+}
+
+.reveal{
+    opacity:0;
+    transform:translateY(30px);
+    transition:.7s cubic-bezier(.2,.8,.2,1);
+}
+
+.reveal.show{
+    opacity:1;
+    transform:none;
+}
+
+/* ABOUT */
+
+.about{
+    display:grid;
+    grid-template-columns:1fr 1.25fr;
+    gap:45px;
+}
+
+.about-box{
+    background:var(--dark);
+    color:#fff;
+    border-radius:26px;
+    padding:36px;
+}
+
+.about-box p{
+    color:#cfc9df;
+    margin-top:12px;
+}
+
+.facts{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+}
+
+.fact{
+    background:var(--surface);
+    padding:22px;
+    border-radius:18px;
+    border:1px solid var(--line);
+    box-shadow:0 8px 30px rgba(40,30,80,.06);
+    transition:.25s;
+}
+
+.fact:hover{transform:translateY(-5px)}
+
+.fact strong{
+    display:block;
+    font-size:1.25rem;
+}
+
+.fact span{
+    color:var(--muted);
+    font-size:.9rem;
+}
+
+/* SKILLS */
+
+.skill-tabs{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:22px;
+}
+
+.tab{
+    border:1px solid var(--line);
+    background:var(--surface);
+    color:var(--ink);
+    padding:9px 14px;
+    border-radius:10px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.tab.active{
+    background:var(--purple);
+    color:#fff;
+    border-color:var(--purple);
+}
+
+.skills{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+}
+
+.skill{
+    padding:13px 18px;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:13px;
+    font-weight:800;
+    transition:.25s;
+}
+
+.skill:hover{
+    transform:translateY(-5px) rotate(-1deg);
+    border-color:var(--purple);
+    color:var(--purple);
+}
+
+/* PROJECTS */
+
+.projects{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.project{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:24px;
+    padding:27px;
+    box-shadow:var(--shadow);
+    transition:.3s;
+    cursor:pointer;
+    min-height:310px;
+}
+
+.project:hover{
+    transform:translateY(-9px);
+    box-shadow:0 25px 65px rgba(54,35,108,.18);
+}
+
+.project-no{
+    font-size:.78rem;
+    color:var(--purple);
+    font-weight:800;
+}
+
+.project h3{
+    font-size:1.4rem;
+    margin:13px 0 8px;
+}
+
+.project p{
+    color:var(--muted);
+    font-size:.94rem;
+}
+
+.chips{
+    display:flex;
+    flex-wrap:wrap;
+    gap:7px;
+    margin-top:20px;
+}
+
+.chip{
+    font-size:.76rem;
+    background:var(--surface-soft);
+    color:#6248d7;
+    padding:6px 10px;
+    border-radius:100px;
+    font-weight:800;
+}
+
+.project-link{
+    display:inline-block;
+    margin-top:18px;
+    color:var(--purple);
+    font-weight:800;
+    font-size:.9rem;
+}
+
+/* EDUCATION */
+
+.timeline{
+    border-left:2px solid #ddd6fa;
+    margin-left:9px;
+    padding-left:32px;
+}
+
+.item{
+    position:relative;
+    padding-bottom:32px;
+}
+
+.item:before{
+    content:"";
+    position:absolute;
+    width:14px;
+    height:14px;
+    background:var(--purple);
+    border:4px solid var(--bg);
+    border-radius:50%;
+    left:-40px;
+    top:5px;
+    box-shadow:0 0 0 2px #b9adf5;
+}
+
+.item h3{font-size:1.16rem}
+
+.meta{
+    color:var(--purple);
+    font-weight:800;
+    font-size:.9rem;
+    margin:4px 0;
+}
+
+.item p{color:var(--muted)}
+
+/* CONTACT */
+
+.contact-section{
+    padding:80px 0 100px;
+}
+
+.contact-container{
+    background:linear-gradient(135deg,#2a2542,#1f1d35);
+    border-radius:42px;
+    padding:70px 78px;
+    box-shadow:0 25px 80px rgba(35,25,70,.25);
+}
+
+.contact-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:50px;
+}
+
+.contact-tag{
+    color:#b9b1ed;
+    margin-bottom:18px;
+}
+
+.contact-content h2{
+    color:#f7f6fb;
+    font-family:"Playfair Display",serif;
+    font-size:clamp(3rem,5vw,5.5rem);
+    line-height:1.02;
+    letter-spacing:-.04em;
+    margin-bottom:20px;
+}
+
+.contact-content p{
+    color:#c4c1ce;
+    max-width:720px;
+    font-size:1.05rem;
+}
+
+.say-hello-btn{
+    min-width:178px;
+    height:108px;
+    padding:25px;
+    background:#f8f8fa;
+    color:#343344;
+    border-radius:20px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:8px;
+    text-decoration:none;
+    font-size:1.15rem;
+    font-weight:800;
+    transition:.3s ease;
+}
+
+.say-hello-btn .arrow{
+    font-size:1.7rem;
+    font-weight:400;
+}
+
+.say-hello-btn:hover{
+    transform:translateY(-7px) scale(1.02);
+    background:#7357f6;
+    color:white;
+    box-shadow:0 20px 40px rgba(115,87,246,.35);
+}
+
+.contact-links{
+    display:flex;
+    align-items:center;
+    margin-top:45px;
+    padding-top:10px;
+    gap:28px;
+}
+
+.contact-item{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    text-decoration:none;
+    color:white;
+    transition:.3s ease;
+}
+
+.contact-item:hover{transform:translateY(-6px)}
+
+.contact-icon{
+    width:64px;
+    height:64px;
+    border-radius:17px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:1.8rem;
+    transition:.3s ease;
+}
+
+.contact-item:hover .contact-icon{
+    transform:rotate(-6deg) scale(1.08);
+}
+
+.instagram{
+    background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);
+}
+
+.linkedin{
+    background:linear-gradient(135deg,#0a66c2,#004182);
+}
+
+.github{background:#39344f}
+
+.phone{
+    background:linear-gradient(135deg,#7762b8,#4a3b7e);
+}
+
+.contact-info{
+    display:flex;
+    flex-direction:column;
+}
+
+.contact-info strong{
+    font-size:1.05rem;
+    color:#fff;
+}
+
+.contact-info span{
+    color:#bdb9c8;
+    font-size:.9rem;
+    margin-top:2px;
+}
+
+.contact-divider{
+    height:58px;
+    width:1px;
+    background:rgba(255,255,255,.22);
+}
+
+/* FOOTER + MODAL */
+
+footer{
+    text-align:center;
+    padding:30px;
+    color:var(--muted);
+    font-size:.9rem;
+}
+
+.top{
+    position:fixed;
+    right:22px;
+    bottom:22px;
+    width:46px;
+    height:46px;
+    border:0;
+    border-radius:15px;
+    background:var(--purple);
+    color:#fff;
+    font-size:1.1rem;
+    cursor:pointer;
+    opacity:0;
+    transform:translateY(20px);
+    pointer-events:none;
+    transition:.25s;
+    z-index:50;
+}
+
+.top.show{
+    opacity:1;
+    transform:none;
+    pointer-events:auto;
+}
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(20,15,35,.55);
+    backdrop-filter:blur(8px);
+    display:none;
+    place-items:center;
+    padding:20px;
+    z-index:200;
+}
+
+.modal.open{display:grid}
+
+.modal-box{
+    width:min(620px,100%);
+    background:var(--surface);
+    border-radius:26px;
+    padding:32px;
+    position:relative;
+    box-shadow:0 30px 100px rgba(0,0,0,.3);
+}
+
+.close{
+    position:absolute;
+    right:18px;
+    top:16px;
+    border:0;
+    background:#f1eff7;
+    color:var(--ink);
+    width:38px;
+    height:38px;
+    border-radius:11px;
+    cursor:pointer;
+    font-size:1.2rem;
+}
+
+.modal-box h2{
+    font-family:"Playfair Display",serif;
+    font-size:2rem;
+    margin-bottom:12px;
+}
+
+.modal-box p{color:var(--muted)}
+.modal-box .chips{margin-bottom:20px}
+
+/* DARK MODE */
+
+body.dark{
+    --bg:#171323;
+    --surface:#211b31;
+    --surface-soft:#302849;
+    --ink:#f2eff9;
+    --muted:#b8b1c7;
+    --line:#332a49;
+    --shadow:0 18px 60px rgba(0,0,0,.28);
+}
+
+body.dark nav{background:rgba(23,19,35,.78)}
+body.dark .eyebrow{background:#302550}
+body.dark .photo-badge{background:rgba(33,27,49,.92);color:#fff}
+body.dark .close{background:#332a49;color:#fff}
+
+/* RESPONSIVE */
+
+@media(max-width:1000px){
+    .contact-container{padding:50px 40px}
+    .contact-links{flex-wrap:wrap}
+    .contact-divider{display:none}
+    .contact-item{width:45%}
+}
+
+@media(max-width:850px){
+    .hero,.about{grid-template-columns:1fr}
+    .hero{padding:65px 0}
+    .projects{grid-template-columns:1fr 1fr}
+    .links{display:none}
+    .menu-btn{display:block}
+
+    .links.open{
+        display:flex;
+        position:absolute;
+        top:72px;
+        left:4%;
+        right:4%;
+        padding:20px;
+        background:var(--surface);
+        border:1px solid var(--line);
+        border-radius:18px;
+        flex-direction:column;
+        box-shadow:var(--shadow);
+    }
+
+    .photo-showcase{
+        min-height:500px;
+        margin-top:10px;
+    }
+
+    .contact-top{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .contact-item{width:45%}
+}
+
+@media(max-width:700px){
+    .contact-container{
+        padding:40px 25px;
+        border-radius:30px;
+    }
+
+    .say-hello-btn{
+        width:100%;
+        height:80px;
+    }
+
+    .contact-links{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:20px;
+    }
+
+    .contact-item{width:100%}
+
+    .contact-content h2{
+        font-size:3.3rem;
+    }
+}
+
+@media(max-width:560px){
+    .projects,.facts{grid-template-columns:1fr}
+    .stats{grid-template-columns:1fr 1fr}
+    .scroll{display:none}
+
+    .hero h1{
+        font-size:3.7rem;
+    }
+
+    .photo-showcase{
+        min-height:440px;
+    }
+
+    .photo-frame{
+        width:80%;
+        height:390px;
+    }
+
+    .photo-badge.one{
+        left:0;
+        top:45px;
+    }
+
+    .photo-badge.two{
+        right:0;
+        bottom:30px;
+    }
+
+    .hero-socials a{
+        width:40px;
+        height:40px;
+    }
+}
+
+@media(pointer:coarse){
+    .cursor-glow{display:none}
+}
+</style>
+</head>
+
+<body>
+<div class="cursor-glow"></div>
+
+<nav>
+    <div class="container nav-wrap">
+        <div class="logo">Anupam Shraddha<span>.</span></div>
+
+        <div class="links" id="navLinks">
+            <a class="active" href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#education">Education</a>
+        </div>
+
+        <div class="nav-actions">
+            <button class="theme-btn" id="themeBtn" title="Toggle theme">☾</button>
+            <button class="menu-btn" id="menuBtn">☰</button>
+        </div>
+    </div>
+</nav>
+
+<main class="container">
+
+<section class="hero" id="home">
+
+    <div class="reveal">
+        <div class="eyebrow">
+            <span class="pulse"></span>
+            Open to opportunities
+        </div>
+
+        <h1>
+            Hi, I'm <span>Anupam Shraddha.</span><br>
+            I build things<br>for the web.
+        </h1>
+
+        <p>
+            Computer Science & Engineering student specializing in AI,
+            passionate about software development, problem-solving,
+            and creating meaningful digital experiences.
+        </p>
+
+        <div class="actions">
+            <a class="btn primary" href="#projects">
+                Explore My Work <span>→</span>
+            </a>
+
+            <a class="btn secondary" href="#contact">
+                Let's Connect
+            </a>
+        </div>
+
+        <div class="hero-socials">
+            <a href="https://instagram.com/anupam.shraddha" target="_blank" aria-label="Instagram">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+
+            <a href="https://www.linkedin.com/in/anupam-shraddha-2520a8324" target="_blank" aria-label="LinkedIn">
+                <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+
+            <a href="https://github.com/Anupamshraddha" target="_blank" aria-label="GitHub">
+                <i class="fa-brands fa-github"></i>
+            </a>
+
+            <a href="tel:+918847380397" aria-label="Phone">
+                <i class="fa-solid fa-phone"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- PHOTO AREA -->
+    <div class="photo-showcase reveal">
+
+        <div class="photo-glow"></div>
+
+        <div class="photo-badge one">
+            <strong><i class="fa-solid fa-code"></i> Developer</strong>
+            <span>Building ideas into reality</span>
+        </div>
+
+        <div class="photo-frame" id="tiltCard">
+
+            <!-- REPLACE images/anupam.jpg WITH YOUR IMAGE FILE -->
+            <img
+                src="images/image.png"
+                alt="Anupam Shraddha"
+                onerror="this.style.display='none';document.getElementById('photoPlaceholder').style.display='grid';"
+            >
+
+            <div class="photo-placeholder" id="photoPlaceholder" style="display:none;">
+                <div>
+                    <i class="fa-solid fa-image"></i>
+                    Add your photo here<br>
+                    <small>images/anupam.jpg</small>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="photo-badge two">
+            <strong>8.5 CGPA</strong>
+            <span>CSE — AI Student</span>
+        </div>
+
+    </div>
+
+    <div class="scroll">SCROLL TO EXPLORE ↓</div>
+</section>
+
+<section id="about" class="reveal">
+    <div class="section-head">
+        <div class="tag">01 — About me</div>
+        <h2>A little about my journey</h2>
+    </div>
+
+    <div class="about">
+        <div class="about-box">
+            <h3>Always learning. Always building.</h3>
+            <p>
+                I am a passionate and curious Computer Science & Engineering
+                student who enjoys exploring new technologies and ideas.
+                I actively seek challenges that help me grow my technical
+                and interpersonal skills.
+            </p>
+        </div>
+
+        <div class="facts">
+            <div class="fact">
+                <strong>Chitkara University</strong>
+                <span>B.E. CSE — Artificial Intelligence</span>
+            </div>
+
+            <div class="fact">
+                <strong>8.5 CGPA</strong>
+                <span>Academic performance</span>
+            </div>
+
+            <div class="fact">
+                <strong>Python • Java</strong>
+                <span>Core programming skills</span>
+            </div>
+
+            <div class="fact">
+                <strong>Full-Stack Interest</strong>
+                <span>Building useful web applications</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="skills" class="reveal">
+    <div class="section-head">
+        <div class="tag">02 — Skills</div>
+        <h2>Tools I enjoy working with</h2>
+    </div>
+
+    <div class="skill-tabs">
+        <button class="tab active" data-category="all">All</button>
+        <button class="tab" data-category="language">Languages</button>
+        <button class="tab" data-category="web">Web</button>
+        <button class="tab" data-category="ai">AI & Tools</button>
+    </div>
+
+    <div class="skills">
+        <span class="skill language">Python</span>
+        <span class="skill language">Java</span>
+        <span class="skill language">JavaScript</span>
+        <span class="skill language">C++</span>
+        <span class="skill web">Django</span>
+        <span class="skill web">Flask</span>
+        <span class="skill web">HTML5</span>
+        <span class="skill web">CSS3</span>
+        <span class="skill web">Bootstrap</span>
+        <span class="skill ai">Machine Learning</span>
+        <span class="skill ai">Git & GitHub</span>
+        <span class="skill ai">Problem Solving</span>
+    </div>
+</section>
+
+<section id="projects" class="reveal">
+    <div class="section-head">
+        <div class="tag">03 — Selected work</div>
+        <h2>Projects that brought ideas to life</h2>
+        <p class="projects-subtitle">A mix of web development, AI, computer vision, and interactive applications.</p>
+    </div>
+
+    <div class="projects">
+        <article class="project" data-project="exammatrix">
+            <div class="project-no">01 / EXAM MANAGEMENT</div><h3>ExamMatrix</h3>
+            <p>A comprehensive exam management system with hall allocation, seating arrangement, timetable management, and student services.</p>
+            <div class="chips"><span class="chip">JavaScript</span><span class="chip">HTML/CSS</span><span class="chip">Local Storage</span></div><!-- ExamMatrix -->
+
+<a href="https://github.com/I-Manmeet/ExamMatrix"
+   target="_blank"
+   rel="noopener"
+   class="project-link"
+   onclick="event.stopPropagation()">
+   View details →
+</a>
+        </article>
+        <article class="project" data-project="smartsprint">
+            <div class="project-no">02 / QUIZ PLATFORM</div><h3>SmartSprint Quiz</h3>
+            <p>An interactive quiz platform focused on engaging learning experiences, question-based assessments, and a clean student-friendly interface.</p>
+            <div class="chips"><span class="chip">HTML</span><span class="chip">Django</span><span class="chip">Flask</span></div>
+            <!-- ExamMatrix -->
+<a href="https://github.com/Anupamshraddha/smartsprint--quiz"
+   target="_blank"
+   rel="noopener"
+   class="project-link"
+   onclick="event.stopPropagation()">
+   View details →
+</a>
+        </article>
+        <article class="project" data-project="handdetection">
+            <div class="project-no">03 / COMPUTER VISION</div><h3>Hand Detection &amp; Eye Blinking</h3>
+            <p>A Python-based computer vision project for detecting hand movements and monitoring eye blinking using real-time visual input.</p>
+            <div class="chips"><span class="chip">Python</span><span class="chip">Computer Vision</span><span class="chip">OpenCV</span></div><!-- ExamMatrix -->
+<a href="https://github.com/Anupamshraddha/Hand-detection_and_eye-blinking"
+   target="_blank"
+   rel="noopener"
+   class="project-link"
+   onclick="event.stopPropagation()">
+   View details →
+</a>
+        </article>
+        <article class="project" data-project="smartmedicine">
+            <div class="project-no">04 / HEALTH TECH</div><h3>Smart Medicine Disperse</h3>
+            <p>A smart medication-related project designed to explore automation and technology-assisted medicine dispensing.</p>
+            <div class="chips"><span class="chip">Python</span><span class="chip">Automation</span><span class="chip">Health Tech</span></div><!-- ExamMatrix -->
+<a href="https://github.com/Anupamshraddha/Smart-Medicine-Disperse"
+   target="_blank"
+   rel="noopener"
+   class="project-link"
+   onclick="event.stopPropagation()">
+   View details →
+</a>
+        </article>
+        <article class="project" data-project="aiassistant">
+            <div class="project-no">05 / AI APPLICATION</div><h3>AI Study Assistant</h3>
+            <p>An AI-powered study assistant concept created to support students with learning, guidance, and interactive academic assistance.</p>
+            <div class="chips"><span class="chip">HTML</span><span class="chip">AI</span><span class="chip">Education</span></div><!-- ExamMatrix -->
+<a href="https://github.com/Anupamshraddha/AI-Study-Assistent"
+   target="_blank"
+   rel="noopener"
+   class="project-link"
+   onclick="event.stopPropagation()">
+   View details →
+</a>
+        </article>
+
+    </div>
+</section>
+
+<section id="education" class="reveal">
+    <div class="section-head">
+        <div class="tag">04 — Education</div>
+        <h2>My academic foundation</h2>
+    </div>
+
+    <div class="timeline">
+
+        <div class="item">
+            <h3>B.E. Computer Science & Engineering — Artificial Intelligence</h3>
+            <div class="meta">Chitkara University, Rajpura · 2024 — 2028</div>
+            <p>
+                Building a foundation in programming, algorithms,
+                artificial intelligence, machine learning, and modern
+                software development.
+            </p>
+        </div>
+
+        <div class="item">
+            <h3>Higher Secondary Education</h3>
+            <div class="meta">BBMB DAV Public School · 82.4%</div>
+            <p>Completed 12th grade in 2024.</p>
+        </div>
+
+        <div class="item">
+            <h3>Secondary Education</h3>
+            <div class="meta">BBMB DAV Public School · 87.6%</div>
+            <p>Completed 10th grade with strong academic performance.</p>
+        </div>
+
+    </div>
+</section>
+
+<section id="contact" class="contact-section reveal">
+    <div class="contact-container">
+
+        <div class="contact-top">
+            <div class="contact-content">
+                <div class="tag contact-tag">05 — CONTACT</div>
+
+                <h2>
+                    Let's build something<br>
+                    meaningful.
+                </h2>
+
+                <p>
+                    Open to learning opportunities, collaborations, internships,
+                    and exciting software projects.
+                </p>
+            </div>
+
+            <!-- Add your real email here -->
+            <a href="mailto:your-email@example.com" class="say-hello-btn">
+                <span>Say Hello</span>
+                <span class="arrow">→</span>
+            </a>
+        </div>
+
+        <div class="contact-links">
+
+            <a href="https://instagram.com/anupam.shraddha"
+               target="_blank"
+               class="contact-item">
+
+                <div class="contact-icon instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </div>
+
+                <div class="contact-info">
+                    <strong>Instagram</strong>
+                    <span>@anupam.shraddha</span>
+                </div>
+            </a>
+
+            <div class="contact-divider"></div>
+
+            <a href="https://www.linkedin.com/in/anupam-shraddha-2520a8324"
+               target="_blank"
+               class="contact-item">
+
+                <div class="contact-icon linkedin">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </div>
+
+                <div class="contact-info">
+                    <strong>LinkedIn</strong>
+                    <span>/in/anupam-shraddha</span>
+                </div>
+            </a>
+
+            <div class="contact-divider"></div>
+
+            <a href="https://github.com/Anupamshraddha"
+               target="_blank"
+               class="contact-item">
+
+                <div class="contact-icon github">
+                    <i class="fa-brands fa-github"></i>
+                </div>
+
+                <div class="contact-info">
+                    <strong>GitHub</strong>
+                    <span>/Anupamshraddha</span>
+                </div>
+            </a>
+
+            <div class="contact-divider"></div>
+
+            <a href="tel:+918847380397" class="contact-item">
+
+                <div class="contact-icon phone">
+                    <i class="fa-solid fa-phone"></i>
+                </div>
+
+                <div class="contact-info">
+                    <strong>Phone</strong>
+                    <span>+91 8847380397</span>
+                </div>
+            </a>
+
+        </div>
+    </div>
+</section>
+
+</main>
+
+<footer>
+    © 2026 Anupam Shraddha · Built with curiosity and creativity.
+</footer>
+
+<button class="top" id="topBtn" aria-label="Back to top">↑</button>
+
+<div class="modal" id="modal">
+    <div class="modal-box">
+        <button class="close" id="closeModal">×</button>
+        <h2 id="modalTitle"></h2>
+        <p id="modalText"></p>
+        <div class="chips" id="modalChips"></div>
+    </div>
+</div>
+
+<script>
+const projects = {
+    exammatrix:{
+        title:"ExamMatrix",
+        text:"A complete exam management experience. It focuses on generating exams, allocating halls, checking availability, generating seating arrangements, viewing timetables, and helping students find their seats.",
+        chips:["JavaScript","HTML","CSS","Local Storage"]
+    },
+    smartsprint:{
+        title:"SmartSprint",
+        text:"A quiz management application designed around interactive learning. It includes authentication, different user roles, subjects, quizzes, and an engaging student experience.",
+        chips:["Django","Python","Bootstrap","JavaScript"]
+    },
+    finance:{
+        title:"Financial Literacy Scale",
+        text:"A collaborative coding-event project exploring financial literacy through an interactive digital experience, combining design, development, and teamwork.",
+        chips:["Web Development","Figma","Teamwork"]
+    }
+};
+
+const modal = document.getElementById("modal");
+const modalTitle = document.getElementById("modalTitle");
+const modalText = document.getElementById("modalText");
+const modalChips = document.getElementById("modalChips");
+
+document.querySelectorAll(".project").forEach(card => {
+    card.addEventListener("click", () => {
+        let p = projects[card.dataset.project];
+
+        modalTitle.textContent = p.title;
+        modalText.textContent = p.text;
+
+        modalChips.innerHTML = p.chips
+            .map(x => `<span class="chip">${x}</span>`)
+            .join("");
+
+        modal.classList.add("open");
+    });
+});
+
+document.getElementById("closeModal").onclick = () => {
+    modal.classList.remove("open");
+};
+
+modal.onclick = e => {
+    if(e.target === modal) modal.classList.remove("open");
+};
+
+/* SKILL FILTER */
+
+document.querySelectorAll(".tab").forEach(tab => {
+    tab.addEventListener("click", () => {
+
+        document.querySelectorAll(".tab").forEach(x => {
+            x.classList.remove("active");
+        });
+
+        tab.classList.add("active");
+
+        document.querySelectorAll(".skill").forEach(skill => {
+            skill.style.display =
+                tab.dataset.category === "all" ||
+                skill.classList.contains(tab.dataset.category)
+                    ? "block"
+                    : "none";
+        });
+    });
+});
+
+/* SCROLL REVEAL */
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+        if(e.isIntersecting) {
+            e.target.classList.add("show");
+        }
+    });
+}, {threshold:.12});
+
+document.querySelectorAll(".reveal").forEach(x => observer.observe(x));
+
+/* BACK TO TOP + ACTIVE NAV */
+
+const topBtn = document.getElementById("topBtn");
+
+window.addEventListener("scroll", () => {
+
+    topBtn.classList.toggle("show", scrollY > 500);
+
+    document.querySelectorAll("section[id]").forEach(s => {
+        if(scrollY >= s.offsetTop - 140) {
+            document.querySelectorAll(".links a").forEach(a => {
+                a.classList.toggle(
+                    "active",
+                    a.getAttribute("href") === "#" + s.id
+                );
+            });
+        }
+    });
+});
+
+topBtn.onclick = () => {
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+};
+
+/* THEME */
+
+const themeBtn = document.getElementById("themeBtn");
+
+themeBtn.onclick = () => {
+    document.body.classList.toggle("dark");
+
+    themeBtn.textContent =
+        document.body.classList.contains("dark")
+            ? "☀"
+            : "☾";
+};
+
+/* PHOTO 3D TILT */
+
+const card = document.getElementById("tiltCard");
+
+card.addEventListener("mousemove", e => {
+
+    let r = card.getBoundingClientRect();
+
+    let x = (e.clientX - r.left) / r.width - .5;
+    let y = (e.clientY - r.top) / r.height - .5;
+
+    card.style.transform =
+        `perspective(900px)
+        rotateY(${x * 7}deg)
+        rotateX(${y * -7}deg)
+        scale(1.01)`;
+});
+
+card.addEventListener("mouseleave", () => {
+    card.style.transform =
+        "perspective(900px) rotateY(0) rotateX(0)";
+});
+
+/* CURSOR GLOW */
+
+const cursorGlow = document.querySelector(".cursor-glow");
+
+document.addEventListener("mousemove", e => {
+    cursorGlow.style.left = e.clientX + "px";
+    cursorGlow.style.top = e.clientY + "px";
+});
+
+/* MOBILE MENU */
+
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+
+menuBtn.onclick = () => {
+    navLinks.classList.toggle("open");
+};
+
+document.querySelectorAll(".links a").forEach(a => {
+    a.onclick = () => {
+        navLinks.classList.remove("open");
+    };
+});
+</script>
+
+</body>
+</htmlconst projects={
+    exammatrix:{title:"ExamMatrix",text:"A complete exam management experience focused on generating exams, allocating halls, checking availability, generating seating arrangements, viewing timetables, and helping students find their seats.",chips:["JavaScript","HTML","CSS","Local Storage"]},
+    smartsprint:{title:"SmartSprint Quiz",text:"An interactive quiz project focused on engaging learning experiences and question-based assessments through a student-friendly web interface.",chips:["HTML","JavaScript","Quiz App"]},
+    handdetection:{title:"Hand Detection & Eye Blinking",text:"A Python computer vision project focused on detecting hand movements and eye blinking from visual input in real time.",chips:["Python","Computer Vision","OpenCV"]},
+    smartmedicine:{title:"Smart Medicine Disperse",text:"A smart medication-related project exploring automation and technology-assisted medicine dispensing.",chips:["Python","Automation","Health Tech"]},
+    aiassistant:{title:"AI Study Assistant",text:"An AI-powered study assistant designed to support students with interactive learning, guidance, and academic assistance.",chips:["HTML","AI","Education"]},
+    finance:{title:"Financial Literacy Scale",text:"A collaborative coding-event project exploring financial literacy through an interactive digital experience, combining design, development, and teamwork.",chips:["Web Development","Figma","Teamwork"]},
+    smartsprintdjango:{title:"SmartSprint Platform",text:"A Django-based quiz management application with authentication, user roles, subject cards, quizzes, and an engaging student experience.",chips:["Django","Python","Bootstrap","JavaScript"]}
+};
+
+>

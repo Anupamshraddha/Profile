@@ -1473,16 +1473,43 @@ topBtn.onclick = () => {
 
 /* THEME */
 
+
 const themeBtn = document.getElementById("themeBtn");
 
-themeBtn.onclick = () => {
-    document.body.classList.toggle("dark");
+function updateTheme() {
+    if (document.body.classList.contains("dark")) {
+        themeBtn.textContent = "☀";
+        themeBtn.setAttribute("aria-label", "Switch to light mode");
+        localStorage.setItem("portfolioTheme", "dark");
 
-    themeBtn.textContent =
-        document.body.classList.contains("dark")
-            ? "☀"
-            : "☾";
-};
+        document.querySelector('meta[name="theme-color"]')
+            .setAttribute("content", "#171323");
+    } else {
+        themeBtn.textContent = "☾";
+        themeBtn.setAttribute("aria-label", "Switch to dark mode");
+        localStorage.setItem("portfolioTheme", "light");
+
+        document.querySelector('meta[name="theme-color"]')
+            .setAttribute("content", "#f7f5ff");
+    }
+}
+
+/* Load saved theme */
+let savedTheme = localStorage.getItem("portfolioTheme");
+
+if (savedTheme === "dark") {
+    document.body.classList.add("dark");
+} else if (!savedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    document.body.classList.add("dark");
+}
+
+updateTheme();
+
+/* Toggle theme */
+themeBtn.addEventListener("click", function () {
+    document.body.classList.toggle("dark");
+    updateTheme();
+});
 
 /* PHOTO 3D TILT */
 

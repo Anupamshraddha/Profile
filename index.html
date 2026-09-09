@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#f7f5ff">
+<meta name="description" content="Anupam Shraddha — Computer Science & Engineering student portfolio.">
 <title>Anupam Shraddha | Portfolio</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,11 +23,16 @@
     --purple2:#aa94ff;
     --line:#e7e1f4;
     --dark:#211b37;
+    --about-bg:#211b37;
+    --about-text:#ffffff;
+    --about-muted:#cfc9df;
     --shadow:0 18px 60px rgba(54,35,108,.12);
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
+
+html,body{overflow-x:hidden;}
 
 body{
     font-family:"DM Sans",sans-serif;
@@ -67,6 +73,7 @@ body:before{
     background:#c9baff;
     top:-160px;
     left:-120px;
+    transition:background .4s ease;
 }
 
 body:after{
@@ -75,6 +82,17 @@ body:after{
     background:#ffd4e9;
     right:-180px;
     bottom:-150px;
+    transition:background .4s ease;
+}
+
+body.dark:before{
+    background:#5a438f;
+    opacity:.20;
+}
+
+body.dark:after{
+    background:#743f62;
+    opacity:.16;
 }
 
 .container{
@@ -414,11 +432,18 @@ section{padding:90px 0}
 .section-head{margin-bottom:32px}
 
 .section-head h2{
-.projects-subtitle{color:var(--muted);margin-top:10px;font-size:1rem;max-width:680px}
     font-family:"Playfair Display",serif;
-    font-size:clamp(2rem,4vw,3.2rem);
-    line-height:1.1;
-    margin-top:7px;
+    font-size:clamp(2.8rem,6vw,5.2rem);
+    line-height:1.02;
+    letter-spacing:-.035em;
+    margin-top:10px;
+}
+
+.projects-subtitle{
+    color:var(--muted);
+    margin-top:10px;
+    font-size:1rem;
+    max-width:680px;
 }
 
 .reveal{
@@ -435,27 +460,41 @@ section{padding:90px 0}
 /* ABOUT */
 
 .about{
-    display:grid;
-    grid-template-columns:1fr 1.25fr;
-    gap:45px;
+    display:block;
 }
 
 .about-box{
-    background:var(--dark);
-    color:#fff;
-    border-radius:26px;
-    padding:36px;
+    width:100%;
+    min-height:285px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    background:var(--about-bg);
+    color:var(--about-text);
+    border-radius:30px;
+    padding:48px;
+    box-shadow:var(--shadow);
+    transition:background .35s ease,color .35s ease,box-shadow .35s ease;
+}
+
+.about-box h3{
+    font-size:clamp(1.7rem,3vw,2.25rem);
+    line-height:1.15;
 }
 
 .about-box p{
-    color:#cfc9df;
-    margin-top:12px;
+    max-width:900px;
+    color:var(--about-muted);
+    margin-top:16px;
+    font-size:1.05rem;
+    line-height:1.8;
 }
 
 .facts{
     display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:14px;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+    margin-top:20px;
 }
 
 .fact{
@@ -464,10 +503,17 @@ section{padding:90px 0}
     border-radius:18px;
     border:1px solid var(--line);
     box-shadow:0 8px 30px rgba(40,30,80,.06);
-    transition:.25s;
+    transition:transform .25s ease, background .35s ease, border-color .35s ease, box-shadow .35s ease;
+    min-height:125px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
 }
 
-.fact:hover{transform:translateY(-5px)}
+.fact:hover{
+    transform:translateY(-5px);
+    border-color:rgba(114,87,245,.45);
+}
 
 .fact strong{
     display:block;
@@ -539,7 +585,7 @@ section{padding:90px 0}
     border-radius:24px;
     padding:27px;
     box-shadow:var(--shadow);
-    transition:.3s;
+    transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease, border-color .35s ease;
     cursor:pointer;
     min-height:310px;
 }
@@ -765,7 +811,7 @@ section{padding:90px 0}
     background:rgba(255,255,255,.22);
 }
 
-/* FOOTER + MODAL */
+/* FOOTER + PROJECT INTERACTION */
 
 footer{
     text-align:center;
@@ -796,53 +842,32 @@ footer{
 .top.show{
     opacity:1;
     transform:none;
-    pointer-events:auto;
-}
-
-.modal{
-    position:fixed;
-    inset:0;
-    background:rgba(20,15,35,.55);
-    backdrop-filter:blur(8px);
-    display:none;
-    place-items:center;
-    padding:20px;
-    z-index:200;
-}
-
-.modal.open{display:grid}
-
-.modal-box{
-    width:min(620px,100%);
-    background:var(--surface);
-    border-radius:26px;
-    padding:32px;
+.project{
     position:relative;
-    box-shadow:0 30px 100px rgba(0,0,0,.3);
+    isolation:isolate;
+    transform-origin:center;
 }
 
-.close{
+.project.enlarged{
+    transform:translateY(-4px) scale(1.055);
+    z-index:20;
+    box-shadow:0 30px 80px rgba(54,35,108,.28);
+    border-color:rgba(114,87,245,.5);
+}
+
+.project.enlarged::after{
+    content:"";
     position:absolute;
-    right:18px;
-    top:16px;
-    border:0;
-    background:#f1eff7;
-    color:var(--ink);
-    width:38px;
-    height:38px;
-    border-radius:11px;
-    cursor:pointer;
-    font-size:1.2rem;
+    inset:0;
+    border-radius:24px;
+    pointer-events:none;
+    box-shadow:inset 0 0 0 2px rgba(114,87,245,.12);
 }
 
-.modal-box h2{
-    font-family:"Playfair Display",serif;
-    font-size:2rem;
-    margin-bottom:12px;
+.project:focus-visible{
+    outline:3px solid rgba(114,87,245,.45);
+    outline-offset:4px;
 }
-
-.modal-box p{color:var(--muted)}
-.modal-box .chips{margin-bottom:20px}
 
 /* DARK MODE */
 
@@ -853,6 +878,9 @@ body.dark{
     --ink:#f2eff9;
     --muted:#b8b1c7;
     --line:#332a49;
+    --about-bg:#302849;
+    --about-text:#f7f4ff;
+    --about-muted:#cfc6df;
     --shadow:0 18px 60px rgba(0,0,0,.28);
 }
 
@@ -863,37 +891,67 @@ body.dark .close{background:#332a49;color:#fff}
 
 /* RESPONSIVE */
 
-@media(max-width:1000px){
-    .contact-container{padding:50px 40px}
-    .contact-links{flex-wrap:wrap}
-    .contact-divider{display:none}
-    .contact-item{width:45%}
+@media(max-width:1100px){
+    .container{
+        width:min(1100px,94%);
+    }
+
+    .hero{
+        gap:40px;
+    }
+
+    .projects{
+        grid-template-columns:repeat(2,1fr);
+    }
 }
 
 @media(max-width:850px){
-    .hero,.about{grid-template-columns:1fr}
-    .hero{padding:65px 0}
-    .projects{grid-template-columns:1fr 1fr}
-    .links{display:none}
-    .menu-btn{display:block}
+    section{
+        padding:72px 0;
+    }
+
+    .nav-wrap{
+        height:64px;
+    }
 
     .links.open{
-        display:flex;
-        position:absolute;
-        top:72px;
-        left:4%;
-        right:4%;
-        padding:20px;
-        background:var(--surface);
-        border:1px solid var(--line);
-        border-radius:18px;
-        flex-direction:column;
-        box-shadow:var(--shadow);
+        top:64px;
+    }
+
+    .hero{
+        min-height:auto;
+        grid-template-columns:1fr;
+        gap:45px;
+        padding:65px 0 80px;
+        text-align:center;
+    }
+
+    .hero p{
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .actions,
+    .hero-socials{
+        justify-content:center;
     }
 
     .photo-showcase{
         min-height:500px;
-        margin-top:10px;
+        margin-top:0;
+    }
+
+    .about-box{
+        min-height:250px;
+        padding:36px;
+    }
+
+    .facts{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .projects{
+        grid-template-columns:1fr 1fr;
     }
 
     .contact-top{
@@ -901,69 +959,283 @@ body.dark .close{background:#332a49;color:#fff}
         align-items:flex-start;
     }
 
-    .contact-item{width:45%}
+    .contact-item{
+        width:45%;
+    }
 }
 
 @media(max-width:700px){
-    .contact-container{
-        padding:40px 25px;
-        border-radius:30px;
+    .container{
+        width:calc(100% - 32px);
     }
 
-    .say-hello-btn{
-        width:100%;
-        height:80px;
+    section{
+        padding:62px 0;
     }
 
-    .contact-links{
-        flex-direction:column;
-        align-items:flex-start;
-        gap:20px;
+    .hero{
+        padding:48px 0 70px;
     }
 
-    .contact-item{width:100%}
-
-    .contact-content h2{
-        font-size:3.3rem;
+    h1{
+        font-size:clamp(3rem,14vw,4.5rem);
+        line-height:.96;
+        margin:18px 0;
     }
-}
 
-@media(max-width:560px){
-    .projects,.facts{grid-template-columns:1fr}
-    .stats{grid-template-columns:1fr 1fr}
-    .scroll{display:none}
+    .section-head{
+        margin-bottom:24px;
+    }
 
-    .hero h1{
-        font-size:3.7rem;
+    .section-head h2{
+        font-size:clamp(2.7rem,12vw,4rem);
+    }
+
+    .about-box{
+        padding:30px 24px;
+        border-radius:24px;
+        min-height:0;
+    }
+
+    .about-box h3{
+        font-size:1.65rem;
+    }
+
+    .about-box p{
+        font-size:.98rem;
+        line-height:1.7;
+    }
+
+    .facts{
+        grid-template-columns:1fr 1fr;
+        gap:12px;
+    }
+
+    .fact{
+        min-height:115px;
+        padding:18px;
+    }
+
+    .fact strong{
+        font-size:1.1rem;
+    }
+
+    .fact span{
+        font-size:.82rem;
+        line-height:1.4;
+    }
+
+    .projects{
+        grid-template-columns:1fr;
+    }
+
+    .project{
+        min-height:0;
+        padding:23px;
+    }
+
+    .project.enlarged{
+        transform:scale(1.015);
     }
 
     .photo-showcase{
-        min-height:440px;
+        min-height:430px;
     }
 
     .photo-frame{
-        width:80%;
-        height:390px;
+        width:min(340px,82vw);
+        height:min(430px,105vw);
+        border-width:6px;
+        border-radius:28px;
+    }
+
+    .photo-glow{
+        width:300px;
+        height:300px;
+    }
+
+    .photo-badge{
+        padding:11px 13px;
+        border-radius:14px;
     }
 
     .photo-badge.one{
         left:0;
-        top:45px;
+        top:35px;
     }
 
     .photo-badge.two{
         right:0;
-        bottom:30px;
+        bottom:20px;
+    }
+
+    .contact-container{
+        padding:38px 22px;
+        border-radius:26px;
+    }
+
+    .contact-content h2{
+        font-size:clamp(2.7rem,12vw,3.7rem);
+    }
+
+    .contact-links{
+        flex-direction:column;
+        align-items:stretch;
+        gap:12px;
+    }
+
+    .contact-item{
+        width:100%;
+    }
+
+    .contact-divider{
+        display:none;
+    }
+
+    .say-hello-btn{
+        width:100%;
+        height:70px;
+    }
+}
+
+@media(max-width:480px){
+    .container{
+        width:calc(100% - 24px);
+    }
+
+    .nav-wrap{
+        height:60px;
+    }
+
+    .logo{
+        font-size:1.2rem;
+    }
+
+    .theme-btn,
+    .menu-btn{
+        width:38px;
+        height:38px;
+        border-radius:10px;
+    }
+
+    .nav-actions{
+        gap:6px;
+    }
+
+    .links.open{
+        top:60px;
+        left:3%;
+        right:3%;
+        padding:16px;
+    }
+
+    .hero{
+        padding:42px 0 60px;
+        gap:32px;
+    }
+
+    .eyebrow{
+        font-size:.72rem;
+        padding:7px 11px;
+    }
+
+    h1{
+        font-size:clamp(2.8rem,15vw,3.7rem);
+    }
+
+    .hero p{
+        font-size:1rem;
+        line-height:1.7;
+    }
+
+    .actions{
+        flex-direction:column;
+        width:100%;
+    }
+
+    .actions .btn{
+        width:100%;
     }
 
     .hero-socials a{
         width:40px;
         height:40px;
     }
+
+    .facts{
+        grid-template-columns:1fr;
+    }
+
+    .fact{
+        min-height:100px;
+    }
+
+    .photo-showcase{
+        min-height:390px;
+    }
+
+    .photo-frame{
+        width:78vw;
+        height:370px;
+    }
+
+    .photo-badge{
+        font-size:.85rem;
+    }
+
+    .photo-badge.one{
+        left:-2px;
+        top:25px;
+    }
+
+    .photo-badge.two{
+        right:-2px;
+        bottom:10px;
+    }
+
+    footer{
+        padding:25px 0;
+        text-align:center;
+    }
 }
 
 @media(pointer:coarse){
-    .cursor-glow{display:none}
+    .cursor-glow{
+        display:none;
+    }
+
+    .project:hover,
+    .fact:hover,
+    .skill:hover,
+    .contact-item:hover{
+        transform:none;
+    }
+
+    .project:active{
+        transform:scale(.99);
+    }
+}
+
+/* ACCESSIBILITY + POLISH */
+
+html:focus-within{
+    scroll-behavior:smooth;
+}
+
+button,
+a{
+    font:inherit;
+}
+
+@media(prefers-reduced-motion:reduce){
+    *,
+    *::before,
+    *::after{
+        animation-duration:.01ms !important;
+        animation-iteration-count:1 !important;
+        scroll-behavior:auto !important;
+        transition-duration:.01ms !important;
+    }
 }
 </style>
 </head>
@@ -985,7 +1257,7 @@ body.dark .close{background:#332a49;color:#fff}
 
         <div class="nav-actions">
             <button class="theme-btn" id="themeBtn" title="Toggle theme">☾</button>
-            <button class="menu-btn" id="menuBtn">☰</button>
+            <button class="menu-btn" id="menuBtn" aria-label="Open navigation" aria-expanded="false">☰</button>
         </div>
     </div>
 </nav>
@@ -1157,7 +1429,7 @@ body.dark .close{background:#332a49;color:#fff}
     </div>
 
     <div class="projects">
-        <article class="project" data-project="exammatrix">
+        <article class="project" data-project="exammatrix" tabindex="0" role="button" aria-label="Expand ExamMatrix project">
             <div class="project-no">01 / EXAM MANAGEMENT</div><h3>ExamMatrix</h3>
             <p>A comprehensive exam management system with hall allocation, seating arrangement, timetable management, and student services.</p>
             <div class="chips"><span class="chip">JavaScript</span><span class="chip">HTML/CSS</span><span class="chip">Local Storage</span></div><!-- ExamMatrix -->
@@ -1170,7 +1442,7 @@ body.dark .close{background:#332a49;color:#fff}
             Github Link →
             </a>
         </article>
-        <article class="project" data-project="smartsprint">
+        <article class="project" data-project="smartsprint" tabindex="0" role="button" aria-label="Expand SmartSprint Quiz project">
             <div class="project-no">02 / QUIZ PLATFORM</div><h3>SmartSprint Quiz</h3>
             <p>An interactive quiz platform focused on engaging learning experiences, question-based assessments, and a clean student-friendly interface.</p>
             <div class="chips"><span class="chip">HTML</span><span class="chip">Django</span><span class="chip">Flask</span></div>
@@ -1183,7 +1455,7 @@ body.dark .close{background:#332a49;color:#fff}
             Github Link →
             </a>
         </article>
-        <article class="project" data-project="handdetection">
+        <article class="project" data-project="handdetection" tabindex="0" role="button" aria-label="Expand Hand Detection and Eye Blinking project">
             <div class="project-no">03 / COMPUTER VISION</div><h3>Hand Detection &amp; Eye Blinking</h3>
             <p>A Python-based computer vision project for detecting hand movements and monitoring eye blinking using real-time visual input.</p>
             <div class="chips"><span class="chip">Python</span><span class="chip">Computer Vision</span><span class="chip">OpenCV</span></div><!-- ExamMatrix -->
@@ -1195,7 +1467,7 @@ body.dark .close{background:#332a49;color:#fff}
             Github Link →
             </a>
         </article>
-        <article class="project" data-project="smartmedicine">
+        <article class="project" data-project="smartmedicine" tabindex="0" role="button" aria-label="Expand Smart Medicine Disperse project">
             <div class="project-no">04 / HEALTH TECH</div><h3>Smart Medicine Disperse</h3>
             <p>A smart medication-related project designed to explore automation and technology-assisted medicine dispensing.</p>
             <div class="chips"><span class="chip">Python</span><span class="chip">Automation</span><span class="chip">Health Tech</span></div><!-- ExamMatrix -->
@@ -1207,7 +1479,7 @@ body.dark .close{background:#332a49;color:#fff}
             Github Link →
             </a>
         </article>
-        <article class="project" data-project="aiassistant">
+        <article class="project" data-project="aiassistant" tabindex="0" role="button" aria-label="Expand AI Study Assistant project">
             <div class="project-no">05 / AI APPLICATION</div><h3>AI Study Assistant</h3>
             <p>An AI-powered study assistant concept created to support students with learning, guidance, and interactive academic assistance.</p>
             <div class="chips"><span class="chip">HTML</span><span class="chip">AI</span><span class="chip">Education</span></div><!-- ExamMatrix -->
@@ -1355,75 +1627,68 @@ body.dark .close{background:#332a49;color:#fff}
 </footer>
 
 <button class="top" id="topBtn" aria-label="Back to top">↑</button>
-
-<div class="modal" id="modal">
-    <div class="modal-box">
-        <button class="close" id="closeModal">×</button>
-        <h2 id="modalTitle"></h2>
-        <p id="modalText"></p>
-        <div class="chips" id="modalChips"></div>
-    </div>
 </div>
 
 <script>
-const projects = {
-    exammatrix:{
-        title:"ExamMatrix",
-        text:"A complete exam management experience. It focuses on generating exams, allocating halls, checking availability, generating seating arrangements, viewing timetables, and helping students find their seats.",
-        chips:["JavaScript","HTML","CSS","Local Storage"]
-    },
-    smartsprint:{
-        title:"SmartSprint",
-        text:"A quiz management application designed around interactive learning. It includes authentication, different user roles, subjects, quizzes, and an engaging student experience.",
-        chips:["Django","Python","Bootstrap","JavaScript"]
-    },
-    finance:{
-        title:"Financial Literacy Scale",
-        text:"A collaborative coding-event project exploring financial literacy through an interactive digital experience, combining design, development, and teamwork.",
-        chips:["Web Development","Figma","Teamwork"]
+/* =========================
+   PORTFOLIO INTERACTIONS
+   ========================= */
+
+/* PROJECT CARDS
+   Click a project to enlarge it.
+   Click it again, or another project, to change the active card.
+*/
+document.querySelectorAll(".project").forEach(function(card){
+
+    function toggleProject(e){
+        /* Do not enlarge when the user clicks the GitHub link */
+        if(e.target.closest(".project-link")){
+            return;
+        }
+
+        document.querySelectorAll(".project").forEach(function(project){
+            if(project !== card){
+                project.classList.remove("enlarged");
+                project.setAttribute("aria-expanded", "false");
+            }
+        });
+
+        let isOpen = card.classList.toggle("enlarged");
+        card.setAttribute("aria-expanded", isOpen ? "true" : "false");
     }
-};
 
-const modal = document.getElementById("modal");
-const modalTitle = document.getElementById("modalTitle");
-const modalText = document.getElementById("modalText");
-const modalChips = document.getElementById("modalChips");
+    card.setAttribute("aria-expanded", "false");
+    card.addEventListener("click", toggleProject);
 
-document.querySelectorAll(".project").forEach(card => {
-    card.addEventListener("click", () => {
-        let p = projects[card.dataset.project];
-
-        modalTitle.textContent = p.title;
-        modalText.textContent = p.text;
-
-        modalChips.innerHTML = p.chips
-            .map(x => `<span class="chip">${x}</span>`)
-            .join("");
-
-        modal.classList.add("open");
+    card.addEventListener("keydown", function(e){
+        if(e.key === "Enter" || e.key === " "){
+            e.preventDefault();
+            toggleProject(e);
+        }
     });
 });
 
-document.getElementById("closeModal").onclick = () => {
-    modal.classList.remove("open");
-};
-
-modal.onclick = e => {
-    if(e.target === modal) modal.classList.remove("open");
-};
+/* Close enlarged project when clicking outside a card */
+document.addEventListener("click", function(e){
+    if(!e.target.closest(".project")){
+        document.querySelectorAll(".project").forEach(function(project){
+            project.classList.remove("enlarged");
+            project.setAttribute("aria-expanded", "false");
+        });
+    }
+});
 
 /* SKILL FILTER */
+document.querySelectorAll(".tab").forEach(function(tab){
+    tab.addEventListener("click", function(){
 
-document.querySelectorAll(".tab").forEach(tab => {
-    tab.addEventListener("click", () => {
-
-        document.querySelectorAll(".tab").forEach(x => {
+        document.querySelectorAll(".tab").forEach(function(x){
             x.classList.remove("active");
         });
 
         tab.classList.add("active");
 
-        document.querySelectorAll(".skill").forEach(skill => {
+        document.querySelectorAll(".skill").forEach(function(skill){
             skill.style.display =
                 tab.dataset.category === "all" ||
                 skill.classList.contains(tab.dataset.category)
@@ -1434,28 +1699,28 @@ document.querySelectorAll(".tab").forEach(tab => {
 });
 
 /* SCROLL REVEAL */
-
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-        if(e.isIntersecting) {
+const observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+        if(e.isIntersecting){
             e.target.classList.add("show");
         }
     });
 }, {threshold:.12});
 
-document.querySelectorAll(".reveal").forEach(x => observer.observe(x));
+document.querySelectorAll(".reveal").forEach(function(x){
+    observer.observe(x);
+});
 
 /* BACK TO TOP + ACTIVE NAV */
-
 const topBtn = document.getElementById("topBtn");
 
-window.addEventListener("scroll", () => {
+window.addEventListener("scroll", function(){
 
-    topBtn.classList.toggle("show", scrollY > 500);
+    topBtn.classList.toggle("show", window.scrollY > 500);
 
-    document.querySelectorAll("section[id]").forEach(s => {
-        if(scrollY >= s.offsetTop - 140) {
-            document.querySelectorAll(".links a").forEach(a => {
+    document.querySelectorAll("section[id]").forEach(function(s){
+        if(window.scrollY >= s.offsetTop - 140){
+            document.querySelectorAll(".links a").forEach(function(a){
                 a.classList.toggle(
                     "active",
                     a.getAttribute("href") === "#" + s.id
@@ -1465,7 +1730,7 @@ window.addEventListener("scroll", () => {
     });
 });
 
-topBtn.onclick = () => {
+topBtn.onclick = function(){
     window.scrollTo({
         top:0,
         behavior:"smooth"
@@ -1473,21 +1738,21 @@ topBtn.onclick = () => {
 };
 
 /* THEME */
-
-
 const themeBtn = document.getElementById("themeBtn");
 
-function updateTheme() {
-    if (document.body.classList.contains("dark")) {
+function updateTheme(){
+    if(document.body.classList.contains("dark")){
         themeBtn.textContent = "☀";
         themeBtn.setAttribute("aria-label", "Switch to light mode");
+        themeBtn.setAttribute("title", "Switch to light mode");
         localStorage.setItem("portfolioTheme", "dark");
 
         document.querySelector('meta[name="theme-color"]')
             .setAttribute("content", "#171323");
-    } else {
+    }else{
         themeBtn.textContent = "☾";
         themeBtn.setAttribute("aria-label", "Switch to dark mode");
+        themeBtn.setAttribute("title", "Switch to dark mode");
         localStorage.setItem("portfolioTheme", "light");
 
         document.querySelector('meta[name="theme-color"]')
@@ -1495,80 +1760,93 @@ function updateTheme() {
     }
 }
 
-/* Load saved theme */
 let savedTheme = localStorage.getItem("portfolioTheme");
 
-if (savedTheme === "dark") {
+if(savedTheme === "dark"){
     document.body.classList.add("dark");
-} else if (!savedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+}else if(
+    !savedTheme &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches
+){
     document.body.classList.add("dark");
 }
 
 updateTheme();
 
-/* Toggle theme */
-themeBtn.addEventListener("click", function () {
+themeBtn.addEventListener("click", function(){
     document.body.classList.toggle("dark");
     updateTheme();
 });
 
 /* PHOTO 3D TILT */
-
 const card = document.getElementById("tiltCard");
 
-card.addEventListener("mousemove", e => {
+if(card && window.matchMedia("(pointer:fine)").matches){
 
-    let r = card.getBoundingClientRect();
+    card.addEventListener("mousemove", function(e){
 
-    let x = (e.clientX - r.left) / r.width - .5;
-    let y = (e.clientY - r.top) / r.height - .5;
+        let r = card.getBoundingClientRect();
 
-    card.style.transform =
-        `perspective(900px)
-        rotateY(${x * 7}deg)
-        rotateX(${y * -7}deg)
-        scale(1.01)`;
-});
+        let x = (e.clientX - r.left) / r.width - .5;
+        let y = (e.clientY - r.top) / r.height - .5;
 
-card.addEventListener("mouseleave", () => {
-    card.style.transform =
-        "perspective(900px) rotateY(0) rotateX(0)";
-});
+        card.style.transform =
+            `perspective(900px)
+             rotateY(${x * 7}deg)
+             rotateX(${y * -7}deg)
+             scale(1.01)`;
+    });
+
+    card.addEventListener("mouseleave", function(){
+        card.style.transform =
+            "perspective(900px) rotateY(0) rotateX(0)";
+    });
+}
 
 /* CURSOR GLOW */
-
 const cursorGlow = document.querySelector(".cursor-glow");
 
-document.addEventListener("mousemove", e => {
-    cursorGlow.style.left = e.clientX + "px";
-    cursorGlow.style.top = e.clientY + "px";
-});
+if(cursorGlow && window.matchMedia("(pointer:fine)").matches){
+
+    document.addEventListener("mousemove", function(e){
+        cursorGlow.style.left = e.clientX + "px";
+        cursorGlow.style.top = e.clientY + "px";
+    });
+}
 
 /* MOBILE MENU */
-
 const menuBtn = document.getElementById("menuBtn");
 const navLinks = document.getElementById("navLinks");
 
-menuBtn.onclick = () => {
-    navLinks.classList.toggle("open");
+menuBtn.onclick = function(){
+    let isOpen = navLinks.classList.toggle("open");
+    menuBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
 };
 
-document.querySelectorAll(".links a").forEach(a => {
-    a.onclick = () => {
+menuBtn.setAttribute("aria-expanded", "false");
+
+document.querySelectorAll(".links a").forEach(function(a){
+    a.onclick = function(){
         navLinks.classList.remove("open");
+        menuBtn.setAttribute("aria-expanded", "false");
     };
+});
+
+/* ESCAPE KEY
+   Close mobile menu and enlarged project.
+*/
+document.addEventListener("keydown", function(e){
+    if(e.key === "Escape"){
+        navLinks.classList.remove("open");
+        menuBtn.setAttribute("aria-expanded", "false");
+
+        document.querySelectorAll(".project").forEach(function(project){
+            project.classList.remove("enlarged");
+            project.setAttribute("aria-expanded", "false");
+        });
+    }
 });
 </script>
 
 </body>
-</htmlconst projects={
-    exammatrix:{title:"ExamMatrix",text:"A complete exam management experience focused on generating exams, allocating halls, checking availability, generating seating arrangements, viewing timetables, and helping students find their seats.",chips:["JavaScript","HTML","CSS","Local Storage"]},
-    smartsprint:{title:"SmartSprint Quiz",text:"An interactive quiz project focused on engaging learning experiences and question-based assessments through a student-friendly web interface.",chips:["HTML","JavaScript","Quiz App"]},
-    handdetection:{title:"Hand Detection & Eye Blinking",text:"A Python computer vision project focused on detecting hand movements and eye blinking from visual input in real time.",chips:["Python","Computer Vision","OpenCV"]},
-    smartmedicine:{title:"Smart Medicine Disperse",text:"A smart medication-related project exploring automation and technology-assisted medicine dispensing.",chips:["Python","Automation","Health Tech"]},
-    aiassistant:{title:"AI Study Assistant",text:"An AI-powered study assistant designed to support students with interactive learning, guidance, and academic assistance.",chips:["HTML","AI","Education"]},
-    finance:{title:"Financial Literacy Scale",text:"A collaborative coding-event project exploring financial literacy through an interactive digital experience, combining design, development, and teamwork.",chips:["Web Development","Figma","Teamwork"]},
-    smartsprintdjango:{title:"SmartSprint Platform",text:"A Django-based quiz management application with authentication, user roles, subject cards, quizzes, and an engaging student experience.",chips:["Django","Python","Bootstrap","JavaScript"]}
-};
-
->
+</html>

@@ -30,7 +30,10 @@
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{
+    scroll-behavior:smooth;
+    scroll-padding-top:90px;
+}
 
 html,body{overflow-x:hidden;}
 
@@ -40,6 +43,7 @@ body{
     color:var(--ink);
     line-height:1.6;
     overflow-x:hidden;
+    padding-top:72px;
 }
 
 img{display:block;max-width:100%}
@@ -103,10 +107,12 @@ body.dark:after{
 /* NAVBAR */
 
 nav{
-    position:sticky;
+    position:fixed;
     top:0;
-    z-index:100;
-    background:rgba(247,245,255,.75);
+    left:0;
+    width:100%;
+    z-index:1000;
+    background:rgba(247,245,255,.85);
     backdrop-filter:blur(18px);
     border-bottom:1px solid rgba(255,255,255,.6);
 }
@@ -180,11 +186,14 @@ nav{
 
 .hero{
     min-height:calc(100vh - 72px);
-    padding:70px 0;
+    padding:55px 0 70px;
+
     display:grid;
-    grid-template-columns:1.15fr .85fr;
-    gap:65px;
+    grid-template-columns:1.08fr .92fr;
+
+    gap:45px;
     align-items:center;
+
     position:relative;
 }
 
@@ -215,13 +224,16 @@ nav{
 
 h1{
     font-family:"Playfair Display",serif;
-    font-size:clamp(3.3rem,7vw,6.4rem);
-    line-height:.95;
-    letter-spacing:-.05em;
-    margin:22px 0;
+    font-size:clamp(3.5rem,5.6vw,5.7rem);
+    line-height:.91;
+    letter-spacing:-.055em;
+    margin:24px 0;
+    max-width:720px;
 }
 
-h1 span{color:var(--purple)}
+h1 span{
+    color:var(--purple);
+}
 
 .hero p{
     font-size:1.08rem;
@@ -276,10 +288,11 @@ h1 span{color:var(--purple)}
 
 .photo-showcase{
     position:relative;
-    min-height:530px;
+    min-height:500px;
     display:flex;
     align-items:center;
     justify-content:center;
+    padding:20px 0;
 }
 
 .photo-glow{
@@ -299,14 +312,26 @@ h1 span{color:var(--purple)}
 .photo-frame{
     position:relative;
     z-index:2;
-    width:min(390px,86%);
-    height:470px;
-    border-radius:36px;
+
+    width:350px;
+    height:455px;
+
+    border-radius:32px;
     overflow:hidden;
-    border:8px solid rgba(255,255,255,.82);
+
+    border:7px solid rgba(255,255,255,.9);
+
     background:linear-gradient(145deg,#8064fa,#342661);
-    box-shadow:0 28px 70px rgba(52,38,97,.28);
-    transition:transform .2s ease;
+
+    box-shadow:0 25px 65px rgba(52,38,97,.22);
+
+    transform:rotate(0deg);
+    transition:transform .25s ease, box-shadow .25s ease;
+}
+
+.photo-frame:hover{
+    transform:translateY(-6px);
+    box-shadow:0 30px 75px rgba(52,38,97,.28);
 }
 
 .photo-frame img{
@@ -315,7 +340,6 @@ h1 span{color:var(--purple)}
     object-fit:cover;
     object-position:center;
 }
-
 /* If no photo has been added yet */
 .photo-placeholder{
     width:100%;
@@ -347,14 +371,13 @@ h1 span{color:var(--purple)}
 }
 
 .photo-badge.one{
-    left:0;
-    top:75px;
+    left:-25px;
+    top:70px;
 }
 
 .photo-badge.two{
-    right:-10px;
-    bottom:70px;
-    animation-delay:-2s;
+    right:-25px;
+    bottom:55px;
 }
 
 .photo-badge strong{
@@ -402,6 +425,9 @@ h1 span{color:var(--purple)}
 }
 
 .scroll{
+    border:0;
+    background:transparent;
+    cursor:pointer;
     position:absolute;
     bottom:22px;
     left:50%;
@@ -672,6 +698,120 @@ section{padding:90px 0}
 
 .item p{color:var(--muted)}
 
+
+/* CERTIFICATES */
+.certificates{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.certificate{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:24px;
+    padding:26px;
+    box-shadow:var(--shadow);
+    transition:.3s ease;
+}
+
+.certificate:hover{
+    transform:translateY(-8px);
+    border-color:var(--purple);
+    box-shadow:0 25px 65px rgba(54,35,108,.18);
+}
+
+.certificate-icon{
+    width:52px;
+    height:52px;
+    border-radius:15px;
+    display:grid;
+    place-items:center;
+    background:var(--surface-soft);
+    color:var(--purple);
+    font-size:1.35rem;
+    margin-bottom:18px;
+}
+
+.certificate h3{
+    font-size:1.2rem;
+    margin-bottom:7px;
+}
+
+.certificate p{
+    color:var(--muted);
+    font-size:.9rem;
+    margin-bottom:18px;
+}
+
+.certificate-link{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    color:var(--purple);
+    font-weight:800;
+    text-decoration:none;
+    transition:.25s ease;
+}
+
+.certificate-link:hover{
+    gap:11px;
+    text-decoration:underline;
+}
+
+/* SCROLL CONTROLS */
+.scroll-controls{
+    position:fixed;
+    right:22px;
+    bottom:78px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    z-index:50;
+}
+
+.scroll-control{
+    width:46px;
+    height:46px;
+    border:0;
+    border-radius:15px;
+    background:var(--purple);
+    color:#fff;
+    font-size:1.05rem;
+    cursor:pointer;
+    box-shadow:0 10px 25px rgba(54,35,108,.18);
+    transition:.25s ease;
+}
+
+.scroll-control:hover{
+    transform:translateY(-3px);
+    box-shadow:0 15px 30px rgba(54,35,108,.25);
+}
+
+@media (max-width:850px){
+    .certificates{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media (max-width:700px){
+    .certificates{
+        grid-template-columns:1fr;
+    }
+
+    .scroll-controls{
+        right:14px;
+        bottom:68px;
+        gap:6px;
+    }
+
+    .scroll-control{
+        width:42px;
+        height:42px;
+        border-radius:12px;
+    }
+}
+
 /* CONTACT */
 
 .contact-section{
@@ -832,16 +972,6 @@ footer{
     color:#fff;
     font-size:1.1rem;
     cursor:pointer;
-    opacity:0;
-    transform:translateY(20px);
-    pointer-events:none;
-    transition:.25s;
-    z-index:50;
-}
-
-.top.show{
-    opacity:1;
-    transform:none;
 }
 
 .project{
@@ -909,7 +1039,7 @@ body.dark .close{background:#332a49;color:#fff}
     .links {
         display: none;
         position: absolute;
-        top: 65px;
+        top: 72px;
         left: 20px;
         right: 20px;
 
@@ -1043,13 +1173,13 @@ body.dark .close{background:#332a49;color:#fff}
     }
 
     h1 {
-        font-size: clamp(2.6rem, 13vw, 3.5rem);
+        font-size: clamp(1.0rem, 8vw, 2.0rem);
 
-        line-height: .98;
+        line-height: .90;
 
-        letter-spacing: -.055em;
+        letter-spacing: -.050em;
 
-        margin: 18px 0;
+        margin: 10px 0;
     }
 
     .hero p {
@@ -1528,6 +1658,10 @@ body.dark .close{background:#332a49;color:#fff}
 
 @media (max-width: 480px) {
 
+    body{
+        padding-top:58px;
+    }
+
     .container {
         width: calc(100% - 24px);
     }
@@ -1642,6 +1776,166 @@ iframe {
     max-width: 100%;
 }
 
+
+/* ================================
+   CERTIFICATE PDF VIEWER
+================================ */
+.certificate-modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.78);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    z-index:99999;
+    backdrop-filter:blur(6px);
+}
+
+.certificate-modal.active{display:flex;}
+
+.certificate-modal-box{
+    width:95%;
+    max-width:1150px;
+    height:92vh;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:22px;
+    overflow:hidden;
+    box-shadow:0 30px 100px rgba(0,0,0,.45);
+    display:flex;
+    flex-direction:column;
+}
+
+.certificate-modal-header{
+    min-height:68px;
+    padding:12px 18px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    border-bottom:1px solid var(--line);
+    background:var(--surface);
+}
+
+.certificate-modal-header h3{
+    margin:0;
+    font-size:1.05rem;
+}
+
+.certificate-modal-header p{
+    color:var(--muted);
+    font-size:.78rem;
+    margin-top:2px;
+}
+
+.certificate-actions{
+    display:flex;
+    align-items:center;
+    gap:9px;
+}
+
+.download-certificate{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    padding:10px 15px;
+    border-radius:11px;
+    background:var(--purple);
+    color:#fff;
+    text-decoration:none;
+    font-size:.82rem;
+    font-weight:800;
+    transition:.25s ease;
+}
+
+.download-certificate:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 25px rgba(114,87,245,.25);
+}
+
+.close-certificate{
+    width:42px;
+    height:42px;
+    border:1px solid var(--line);
+    border-radius:11px;
+    background:var(--surface-soft);
+    color:var(--ink);
+    font-size:1.05rem;
+    cursor:pointer;
+    transition:.25s ease;
+}
+
+.close-certificate:hover{
+    background:var(--purple);
+    color:#fff;
+}
+
+.certificate-pdf-container{
+    flex:1;
+    min-height:0;
+    width:100%;
+    background:#525659;
+}
+
+.certificate-pdf-container iframe{
+    display:block;
+    width:100%;
+    height:100%;
+    border:0;
+    background:#fff;
+}
+
+@media(max-width:700px){
+    .certificate-modal{padding:7px;}
+
+    .certificate-modal-box{
+        width:100%;
+        height:96vh;
+        border-radius:15px;
+    }
+
+    .certificate-modal-header{
+        min-height:60px;
+        padding:9px 10px;
+    }
+
+    .certificate-modal-header h3{font-size:.9rem;}
+    .certificate-modal-header p{font-size:.68rem;}
+
+    .download-certificate{
+        padding:8px 10px;
+        font-size:.7rem;
+    }
+
+    .close-certificate{
+        width:36px;
+        height:36px;
+        font-size:.9rem;
+    }
+}
+
+
+.hero-resume-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:12px 20px;
+  border-radius:12px;
+  border:1px solid rgba(124,58,237,.35);
+  background:rgba(124,58,237,.08);
+  color:inherit;
+  text-decoration:none;
+  font-weight:700;
+  transition:all .2s ease;
+}
+.hero-resume-btn:hover{
+  transform:translateY(-2px);
+  background:rgba(124,58,237,.15);
+  border-color:rgba(124,58,237,.55);
+}
+
 </style>
 </head>
 
@@ -1658,6 +1952,7 @@ iframe {
             <a href="#skills">Skills</a>
             <a href="#projects">Projects</a>
             <a href="#education">Education</a>
+            
         </div>
 
         <div class="nav-actions">
@@ -1678,8 +1973,8 @@ iframe {
         </div>
 
         <h1>
-            Hi, I'm <span>Anupam Shraddha.</span><br>
-            I build things<br>for the web.
+            Hi, I'm <br></nr><span>Anupam Shraddha.</span><br>
+            I code, build<br>and explore AI.
         </h1>
 
         <p>
@@ -1693,7 +1988,8 @@ iframe {
                 Explore My Work <span>→</span>
             </a>
 
-            <a class="btn secondary" href="#contact">
+            <a href="Anupam Shraddha.pdf" class="hero-resume-btn" target="_blank" rel="noopener">Resume ↗</a>
+<a class="btn secondary" href="#contact">
                 Let's Connect
             </a>
         </div>
@@ -1753,7 +2049,6 @@ iframe {
 
     </div>
 
-    <div class="scroll">SCROLL TO EXPLORE ↓</div>
 </section>
 
 <section id="about" class="reveal">
@@ -1933,12 +2228,14 @@ iframe {
     </div>
 </section>
 
+
+
 <section id="contact" class="contact-section reveal">
     <div class="contact-container">
 
         <div class="contact-top">
             <div class="contact-content">
-                <div class="tag contact-tag">05 — CONTACT</div>
+                <div class="tag contact-tag">06 — CONTACT</div>
 
                 <h2>
                     Let's build something<br>
@@ -2031,7 +2328,36 @@ iframe {
     © 2026 Anupam Shraddha · Built with curiosity and creativity.
 </footer>
 
-<button class="top" id="topBtn" aria-label="Back to top">↑</button>
+<div class="scroll-controls" aria-label="Scroll controls">
+    <button class="scroll-control" id="scrollUpBtn" aria-label="Scroll to top" title="Scroll up">↑</button>
+    <button class="scroll-control" id="scrollDownBtn" aria-label="Scroll down" title="Scroll down">↓</button>
+</div>
+
+<!-- CERTIFICATE PDF VIEWER -->
+<div id="certificateModal" class="certificate-modal" aria-hidden="true">
+    <div class="certificate-modal-box" role="dialog" aria-modal="true" aria-labelledby="certificateModalTitle">
+        <div class="certificate-modal-header">
+            <div>
+                <h3 id="certificateModalTitle">Certificate</h3>
+                <p>You can view the certificate here or download the PDF.</p>
+            </div>
+
+            <div class="certificate-actions">
+                <a id="downloadCertificate" class="download-certificate" href="#" download>
+                    <i class="fa-solid fa-download"></i> Download PDF
+                </a>
+
+                <button id="closeCertificateBtn" class="close-certificate" type="button" aria-label="Close certificate">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="certificate-pdf-container">
+            <iframe id="certificatePDF" src="" title="Certificate PDF viewer"></iframe>
+        </div>
+    </div>
+</div>
 
 <script>
 /* =========================
@@ -2115,12 +2441,50 @@ document.querySelectorAll(".reveal").forEach(function(x){
     observer.observe(x);
 });
 
-/* BACK TO TOP + ACTIVE NAV */
-const topBtn = document.getElementById("topBtn");
+/* SCROLL UP + DOWN + ACTIVE NAV */
+const scrollUpBtn = document.getElementById("scrollUpBtn");
+const scrollDownBtn = document.getElementById("scrollDownBtn");
+
+scrollUpBtn.onclick = function(){
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+};
+
+function scrollOneScreenDown(){
+    const sections = document.querySelectorAll("main section");
+    const currentScroll = window.scrollY;
+    const nav = document.querySelector("nav");
+    const headerHeight = nav ? nav.offsetHeight : 0;
+
+    for(const section of sections){
+        const sectionTop = section.getBoundingClientRect().top + window.scrollY - headerHeight - 10;
+
+        if(sectionTop > currentScroll + 50){
+            window.scrollTo({
+                top: sectionTop,
+                behavior: "smooth"
+            });
+            return;
+        }
+    }
+
+    window.scrollTo({
+        top: document.documentElement.scrollHeight,
+        behavior: "smooth"
+    });
+}
+
+scrollDownBtn.onclick = scrollOneScreenDown;
+
+const heroScrollBtn = document.getElementById("heroScrollBtn");
+
+if(heroScrollBtn){
+    heroScrollBtn.onclick = scrollOneScreenDown;
+}
 
 window.addEventListener("scroll", function(){
-
-    topBtn.classList.toggle("show", window.scrollY > 500);
 
     document.querySelectorAll("section[id]").forEach(function(s){
         if(window.scrollY >= s.offsetTop - 140){
@@ -2134,12 +2498,72 @@ window.addEventListener("scroll", function(){
     });
 });
 
-topBtn.onclick = function(){
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
+/* =========================
+   CERTIFICATE PDF VIEWER
+   ========================= */
+
+const certificateModal = document.getElementById("certificateModal");
+const certificatePDF = document.getElementById("certificatePDF");
+const downloadCertificate = document.getElementById("downloadCertificate");
+const closeCertificateBtn = document.getElementById("closeCertificateBtn");
+const certificateModalTitle = document.getElementById("certificateModalTitle");
+
+function openCertificate(pdfPath, certificateName){
+
+    if(!certificateModal || !certificatePDF || !downloadCertificate){
+        return;
+    }
+
+    certificateModalTitle.textContent = certificateName || "Certificate";
+
+    /* Open the PDF inside the website */
+    certificatePDF.src = pdfPath;
+
+    /* Give the user a direct download button */
+    downloadCertificate.href = pdfPath;
+    downloadCertificate.setAttribute("download", "");
+
+    certificateModal.classList.add("active");
+    certificateModal.setAttribute("aria-hidden", "false");
+
+    /* Stop the page behind the PDF from scrolling */
+    document.body.style.overflow = "hidden";
+}
+
+function closeCertificate(){
+
+    if(!certificateModal || !certificatePDF){
+        return;
+    }
+
+    certificateModal.classList.remove("active");
+    certificateModal.setAttribute("aria-hidden", "true");
+
+    /* Clear the PDF after closing */
+    certificatePDF.src = "";
+
+    document.body.style.overflow = "";
+}
+
+if(closeCertificateBtn){
+    closeCertificateBtn.addEventListener("click", closeCertificate);
+}
+
+/* Close when clicking the dark background */
+if(certificateModal){
+    certificateModal.addEventListener("click", function(e){
+        if(e.target === certificateModal){
+            closeCertificate();
+        }
     });
-};
+}
+
+/* Close PDF viewer with Escape */
+document.addEventListener("keydown", function(e){
+    if(e.key === "Escape" && certificateModal && certificateModal.classList.contains("active")){
+        closeCertificate();
+    }
+});
 
 /* THEME */
 const themeBtn = document.getElementById("themeBtn");
